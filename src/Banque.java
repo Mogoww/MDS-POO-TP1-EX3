@@ -17,11 +17,18 @@ public class Banque {
     }
     // methodes rechercheCompte
     public Compte rechercheCompte(String proprietaire) {
-        for(Compte compte : this.comptes) {
-            if (compte.getProprietaire().equals(proprietaire)) {
-                return compte;
+        // do while loop to search proprietaire in comptes array
+        int i = 0;
+        do {
+            if (this.comptes[i].getProprietaire().equals(proprietaire)) {
+                // System.out.println("Le compte de "+ proprietaire +" est "+ this.comptes[i].getSolde());
+                return this.comptes[i];
             }
-        }
+            i++;
+        } while (i < this.nbComptes);
+
+        // print null for debug
+        // System.out.println("null");
         return null;
     }
 }
