@@ -34,17 +34,34 @@ public class Main {
 
             // scanner
             Scanner sc = new Scanner(System.in);
-            if (!sc.hasNextInt() || sc.nextInt() > 2) {
+
+            if (!sc.hasNextInt()) {
                 continue;
             }else {
                 int choix = sc.nextInt();
                 switch (choix) {
                     case 1:
                         System.out.println("Vous souhaitez ajouter un compte");
+                        System.out.println("A quel nom voulez-vous ouvrir votre compte ?");
+                        Scanner sc2 = new Scanner(System.in);
+                        String nom = sc2.nextLine();
+                        Compte compte = new Compte(nom);
+                        credit_blesois.addCompte(compte);
                         break;
                         case 2:
                             System.out.println("Vous souhaitez consulter un compte");
+                            System.out.println("Quel compte voulez vous consulter ?");
+                            Scanner sc3 = new Scanner(System.in);
+                            String nom2 = sc3.nextLine();
+                            if (credit_blesois.rechercheCompte(nom2) != null) {
+                                System.out.println(credit_blesois.rechercheCompte(nom2));
+                            } else {
+                                System.out.println("Le compte n'existe pas");
+                            }
                             break;
+                            default:
+                                System.out.println("Choix invalide");
+                                break;
                 }
             }
 

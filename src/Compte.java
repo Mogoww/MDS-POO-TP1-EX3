@@ -8,7 +8,7 @@ public class Compte {
     }
     // setter
     private void setProprietaire(String proprietaire) {
-        this.proprietaire = proprietaire;
+        this.proprietaire = proprietaire.toLowerCase();
     }
     // getter
     public int getSolde() {
@@ -26,8 +26,8 @@ public class Compte {
 
     // second constructor with proprietaire to params and solde init 0
     public Compte(String p) {
-        proprietaire = p;
-        solde = 0;
+        this.proprietaire = p.substring(0, 1).toUpperCase() + p.substring(1).toLowerCase();
+        this.solde = 0;
     }
 
     public void credit (int amount) {
