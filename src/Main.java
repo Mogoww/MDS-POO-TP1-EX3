@@ -34,39 +34,80 @@ public class Main {
 
             // scanner
             Scanner sc = new Scanner(System.in);
-
-            if (!sc.hasNextInt()) {
+            if(!sc.hasNextInt()){
                 continue;
-            }else {
-                int choix = sc.nextInt();
-                switch (choix) {
-                    case 1:
-                        System.out.println("Vous souhaitez ajouter un compte");
-                        System.out.println("A quel nom voulez-vous ouvrir votre compte ?");
-                        Scanner sc2 = new Scanner(System.in);
-                        String nom = sc2.nextLine();
-                        Compte compte = new Compte(nom);
-                        credit_blesois.addCompte(compte);
-                        break;
-                        case 2:
-                            System.out.println("Vous souhaitez consulter un compte");
-                            System.out.println("Quel compte voulez vous consulter ?");
-                            Scanner sc3 = new Scanner(System.in);
-                            String nom2 = sc3.nextLine();
-                            if (credit_blesois.rechercheCompte(nom2) != null) {
-                                System.out.println(credit_blesois.rechercheCompte(nom2));
-                            } else {
-                                System.out.println("Le compte n'existe pas");
-                            }
-                            break;
-                            default:
-                                System.out.println("Choix invalide");
-                                break;
-                }
             }
 
+            switch (sc.nextInt()) {
+                case 1:
+                    System.out.println("Vous souhaitez ajouter un compte");
+                    System.out.println("A quel nom voulez-vous ouvrir votre compte ?");
+                    Scanner sc1 = new Scanner(System.in);
+                    String nom = sc1.nextLine();
+                    Compte compte = new Compte(nom);
+                    credit_blesois.addCompte(compte);
+                    break;
+                case 2:
+                    System.out.println("Vous souhaitez consulter un compte");
+                    System.out.println("Quel compte voulez vous consulter ?");
+                    Scanner sc2 = new Scanner(System.in);
+                    String nom2 = sc2.nextLine();
+                    if (credit_blesois.rechercheCompte(nom2) == null ) {
+                        System.out.println("Erreur, compte inconnue");
+                        continue;
+                    }
+
+                    System.out.println(credit_blesois.rechercheCompte(nom2));
+                    System.out.println("1 -> Créditer");
+                    System.out.println("2 -> Débiter");
+                    System.out.println("3 -> Virement");
+                    Scanner sc3 = new Scanner(System.in);
+                    // if sc4 is not int then repeat the loop
+                    if (!sc3.hasNextInt()) {
+                        System.out.println("Veuillez saisir un nombre !!!!");
+                        continue;
+                    }
+                    switch (sc3.nextInt()) {
+                        case 1:
+                            System.out.println("Vous souhaitez créditer votre compte");
+                            System.out.println("Quel montant voulez-vous créditer ?");
+                            Scanner sc4 = new Scanner(System.in);
+                            if (!sc4.hasNextInt()) {
+                                System.out.println("Veuillez saisir un nombre !!!!");
+                                continue;
+                            }
+                            int montant = sc4.nextInt();
+                            credit_blesois.rechercheCompte(nom2).credit(montant);
+                            System.out.println(credit_blesois.rechercheCompte(nom2));
+                            break;
+                        case 2:
+                            System.out.println("Vous souhaitez débiter votre compte");
+                            System.out.println("Quel montant voulez-vous débiter ?");
+                            Scanner sc5 = new Scanner(System.in);
+                            if (!sc5.hasNextInt()) {
+                                System.out.println("Veuillez saisir un nombre !!!!");
+                                continue;
+                            }
+                            int montant2 = sc5.nextInt();
+                            credit_blesois.rechercheCompte(nom2).debit(montant2);
+                            System.out.println(credit_blesois.rechercheCompte(nom2));
+                            break;
+                        case 3:
+                            System.out.println("Vous souhaitez faire un virement");
+                            System.out.println("Quel compte voulez-vous créditer ?");
+                            Scanner sc7 = new Scanner(System.in);
+                            String nom3 = sc7.nextLine();
+                            System.out.println("Quel montant voulez-vous créditer ?");
+                            Scanner sc8 = new Scanner(System.in);
+                            int montant3 = sc8.nextInt();
+                            credit_blesois.rechercheCompte(nom2).virement(credit_blesois.rechercheCompte(nom3), montant3);
+                            System.out.println(credit_blesois.rechercheCompte(nom2));
+                            System.out.println(credit_blesois.rechercheCompte(nom3));
+                            break;
+                        default:
+                            break;
+                    }
+            }
         }
-
-
     }
 }
