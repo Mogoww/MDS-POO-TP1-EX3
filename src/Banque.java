@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Banque {
     // attributs
     private String libelle;
@@ -14,6 +16,16 @@ public class Banque {
     public void addCompte(Compte compte) {
         this.comptes[nbComptes] = compte;
         this.nbComptes++;
+    }
+    // methode deleteCompte
+    public void deleteCompte(Compte compte) {
+      for (int i = 0; i < this.nbComptes; i++) {
+        if (this.comptes[i] == compte) {
+          this.comptes[i] = this.comptes[this.nbComptes - 1];
+          this.nbComptes--;
+          break;
+        }
+      }
     }
     // methodes rechercheCompte
     public Compte rechercheCompte(String proprietaire) {

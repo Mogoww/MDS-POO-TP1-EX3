@@ -53,6 +53,7 @@ public class Compte {
     }
 
 
+
     // function toString
     public String toString() {
         return "Le propriétaire est "+ proprietaire +" avec un solde de "+ solde+" euros";

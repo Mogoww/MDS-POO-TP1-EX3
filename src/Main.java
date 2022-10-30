@@ -61,6 +61,7 @@ public class Main {
                     System.out.println("1 -> Créditer");
                     System.out.println("2 -> Débiter");
                     System.out.println("3 -> Virement");
+                    System.out.println("4 -> Supprimer le compte");
                     Scanner sc3 = new Scanner(System.in);
                     // if sc4 is not int then repeat the loop
                     if (!sc3.hasNextInt()) {
@@ -103,6 +104,10 @@ public class Main {
                             credit_blesois.rechercheCompte(nom2).virement(credit_blesois.rechercheCompte(nom3), montant3);
                             System.out.println(credit_blesois.rechercheCompte(nom2));
                             System.out.println(credit_blesois.rechercheCompte(nom3));
+                            break;
+                        case 4:
+                            System.out.println("Vous souhaitez supprimer votre compte");
+                            credit_blesois.deleteCompte(credit_blesois.rechercheCompte(nom2));
                             break;
                         default:
                             break;
